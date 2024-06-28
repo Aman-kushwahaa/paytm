@@ -19,7 +19,7 @@ export async function createOnrampTransaction(
   const userId = session.user.id;
   console.log("user found");
 
-  await prisma.onRampTransaction.create({
+  const txn = await prisma.onRampTransaction.create({
     data: {
       userId: Number(session?.user?.id),
       amount: Number(amount),
@@ -29,6 +29,8 @@ export async function createOnrampTransaction(
       token,
     },
   });
+
+  console.log(txn);
 
   console.log(amount + " created");
   return {

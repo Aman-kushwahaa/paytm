@@ -17,23 +17,17 @@ app.post("/hdfcWebhook", async (req, res) => {
     amount: req.body.amount,
   };
 
-  const current_balance_amount = await db.balance.findFirst({
-    where: {
-      userId: Number(paymentInformation.userId),
-    },
-  });
-
-  console.log("amount coming is " + paymentInformation.amount);
-
   try {
+    console.log("amount coming is " + Number(paymentInformation.amount));
+    console.log("userID" + Number(paymentInformation.userId));
+
     await db.$transaction([
-      db.balance.updateMany({
+      db.balance.update({
         where: {
           userId: Number(paymentInformation.userId),
         },
         data: {
           amount: {
-            // You can also get this from your DB
             increment: Number(paymentInformation.amount),
           },
         },
@@ -47,6 +41,7 @@ app.post("/hdfcWebhook", async (req, res) => {
         },
       }),
     ]);
+    console.log("info" + JSON.stringify(paymentInformation));
 
     const balance = await db.balance.findFirst({
       where: {
@@ -54,7 +49,15 @@ app.post("/hdfcWebhook", async (req, res) => {
       },
     });
 
-    console.log("balance is" + balance);
+    console.log(balance);
+
+    // const balance = await db.balance.findFirst({
+    //   where: {
+    //     userId: Number(paymentInformation.userId),
+    //   },
+    // });
+
+    // console.log("balance is" + balance);
     res.json({
       message: "Captured",
     });

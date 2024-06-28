@@ -1,3 +1,9 @@
+import { SendCard } from "../../../components/SendCard";
+
 export default function () {
-  return "P2p transfer";
+  return (
+    <div className="w-full">
+      <SendCard />;
+    </div>
+  );
 }
