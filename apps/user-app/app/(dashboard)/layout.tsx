@@ -22,7 +22,7 @@ export default function Layout({
           />
           <SidebarItem
             href={"/p2ptransfer"}
-            icon={<TransactionsIcon />}
+            icon={<P2pTransfer />}
             title="P2P transfer"
           />
         </div>
@@ -84,6 +84,25 @@ function TransactionsIcon() {
         stroke-linecap="round"
         stroke-linejoin="round"
         d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+      />
+    </svg>
+  );
+}
+
+function P2pTransfer() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      className="size-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
       />
     </svg>
   );
